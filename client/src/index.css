@@ -7,14 +7,25 @@
 
 /* <----------  Nav-bar  -----------> */
 .navbar-container {
+  align-items: center;
+  display: flex;
   max-height: 5rem;
   margin-left: -0.5rem;
   padding-bottom: 1rem;
   padding-top: 1rem;
   position: relative;
-  text-align: right;
   top: -0.5rem;
   width: 101.14%;
+}
+
+.nav-home-logo {
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  height: 6rem;
+  margin-left: 2rem;
+  margin-right: 63rem;
+  margin-top: 1rem;
+  position: relative;
 }
 
 .nav-link {
@@ -24,6 +35,7 @@
   font-size: 1.3rem;
   margin-right: 2rem;
   text-decoration: underline;
+  width: auto;
 }
 
 .nav-link:hover {
@@ -52,7 +64,7 @@
 .home-title {
   font-family: optima, sans-serif;
   font-size: 6rem;
-  margin-top: 8rem;
+  margin-top: 5rem;
   text-align: center;
 }
 
@@ -61,7 +73,7 @@
   height: 15rem;
   margin-left: -0.5rem;
   position: relative;
-  top: 12rem;
+  top: 30rem;
   width: 101.14%;
 }
 
