@@ -69,6 +69,7 @@ class Product(db.Model, SerializerMixin):
     category = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
+    picture = db.Column(db.String)
     price = db.Column(db.Integer, nullable=False)
     sizes = db.Column(db.String, nullable=False)
 
