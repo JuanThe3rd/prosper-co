@@ -14,7 +14,7 @@ order_product_association = Table(
 
 class Account(db.Model, SerializerMixin):
     __tablename__ = 'accounts'
-
+    
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
