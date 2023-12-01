@@ -4,7 +4,7 @@ from flask_restful import Resource
 import os
 
 from config import app, db, api
-from models import Account, Product, Order
+from models import Account, Product, Order, OrderProductAssociation
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get(
@@ -136,11 +136,53 @@ class Orders(Resource):
             return make_response({'result': 'Order deleted'}, 200)
         else:
             return make_response({'error': 'Order not found'}, 404)
+        
+
+class OrderProductAssociations (Resource):
+    def get(self, id = None):
+        if id:
+            join = OrderProductAssociation.query.filter_by(id = id).first()
+
+            if join:
+                return make_response(join.to_dict(), 200)
+            else:
+                return make_response({'error': 'Join not found'}, 404)
+        else:
+            joins = OrderProductAssociation.query.all()
+            return make_response([join.to_dict() for join in joins], 200)
+
+    def post(self):
+        new_join = OrderProductAssociation(**request.json)
+        db.session.add(new_join)
+        db.session.commit()
+        return make_response(new_join.to_dict(), 201)
+
+    def patch(self, id):
+        join = OrderProductAssociation.query.filter_by(id = id).first()
+
+        if join:
+            for key, value in request.json.items():
+                setattr(join, key, value)
+                db.session.commit()
+                return make_response(join.to_dict(), 200)
+        else:
+            return make_response({'error': 'Join not found'})
+        
+    def delete(self, id):
+        join = OrderProductAssociation.query.filter_by(id = id).first()
+
+        if join:
+            db.session.delete(join)
+            db.session.commit()
+            return make_response({'result': 'Join deleted'}, 200)
+        else:
+            return make_response({'error': 'Join not found'}, 404)
 
 
 api.add_resource(Accounts, '/accounts', '/accounts/<int:id>')
 api.add_resource(Products, '/products', '/products/<int:id>')
 api.add_resource(Orders, '/orders', '/orders/<int:id>')
+api.add_resource(OrderProductAssociations, '/associations', '/associations/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
