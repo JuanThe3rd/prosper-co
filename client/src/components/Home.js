@@ -3,19 +3,18 @@ import Navbar from './Navbar';
 
 function Home() {
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
 
     useEffect(() => {
         fetch('/products')
             .then(res => res.json())
             .then(setProducts)
-    }, [])
-
-    console.log(products);
+    }, []);
 
     return (
         <div>
             <div className='page-background'></div>
-            <Navbar />
+            <Navbar cart={cart}/>
             <div className='home-page'>
                 <h1 className='home-title'>Prosper Co.</h1>
 
@@ -23,7 +22,14 @@ function Home() {
                     {products.map((product) => (
                         <div className='product-card'>
                             <img className='product-img' src={product.picture} alt={`${product.name} img`} />
-                            <h2>{product.name}</h2>
+                            <p className='product-title'>{product.name}</p>
+                            <div className='product-details'>
+                                <p className='product-price'>Price: ${product.price}</p>
+                                <button className='add-to-cart-btn' onClick={() => addProductToCart(product)}>Add to Cart</button>
+                                {product.description &&
+                                    <p>{product.description}</p>
+                                }
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -35,6 +41,10 @@ function Home() {
             </div>
         </div>
     )
+
+    function addProductToCart(product){
+        setCart([...cart, product])
+    }
 }
 
 export default Home;
