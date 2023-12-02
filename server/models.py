@@ -81,6 +81,7 @@ class Product(db.Model, SerializerMixin):
             'category': self.category,
             'name': self.name,
             'description': self.description,
+            'picture': self.picture,
             'price': self.price,
             'sizes': self.sizes
         }
