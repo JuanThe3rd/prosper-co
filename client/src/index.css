@@ -69,18 +69,21 @@
 }
 
 .products-container {
-  column-gap: 2%;
+  column-gap: 5%;
   display: grid;
-  grid-template-columns: 31% 30% 31%;
+  grid-template-columns: 30% 30% 30%;
   row-gap: 3rem;
   margin-left: 2%;
   margin-top: 10rem;
-  width: 100%;
+  position: relative;
+  width: 96%;
 }
 
 .product-card {
   background-color: white;
+  border-radius: 10px;
   font-family: optima, sans-serif;
+  position: relative;
   text-align: center;
 }
 
