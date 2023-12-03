@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 
-function Navbar({ cart }) {
+function Navbar({ cart, removeProductFromCart }) {
     const [modal, setModal] = useState(null);
-
-    console.log(cart);
-        
+    
     return (
         <div>
             <div className='navbar-container'>
@@ -19,16 +17,33 @@ function Navbar({ cart }) {
                     <span className='close-modal' onClick={() => setModal(null)}>&times;</span>
                     <h2 className='modal-title'>Cart</h2>
                     <div className='cart-items-container'>
-                        {cart.length !== 0 &&
+                        {cart.products.length !== 0 &&
                             <div>
-                                {cart.map((product) => (
+                                {cart.products.map((product) => (
                                     <div>
-                                        <h3>{product.name}</h3>
+                                        {product.id === cart.products[cart.products.length - 1].id &&
+                                            <div className='last-cart-product'>
+                                                <img className='cart-product-image' src={product.picture} />
+                                                <br />
+                                                <p>{product.name}</p>
+                                                <p>x{product.quantity} ${product.price}</p>
+                                                <span className='cart-remove-btn' onClick={() => removeProductFromCart(product)}>&times;</span>
+                                            </div>
+                                        }
+                                        {product.id !== cart.products[cart.products.length - 1].id &&
+                                            <div className='cart-product'>
+                                                <img className='cart-product-image' src={product.picture} />
+                                                <br />
+                                                <p>{product.name}</p>
+                                                <p>x{product.quantity} ${product.price}</p>
+                                                <span className='cart-remove-btn' onClick={() => removeProductFromCart(product)}>&times;</span>
+                                            </div>
+                                        }
                                     </div>
                                 ))}
                             </div>
                         }
-                        {cart.length === 0 &&
+                        {cart.products.length === 0 &&
                             <div>
                                 <h3 className='empty-cart'>Your Cart is Empty</h3>
                             </div>
@@ -36,7 +51,7 @@ function Navbar({ cart }) {
                     </div>
 
                     <div className='modal-checkout-details'>
-                        <p className='modal-total'>Total: $0</p>
+                        <p className='modal-total'>Total: ${cart.total}</p>
                         <button className='modal-checkout-btn'>Checkout</button>
                     </div>
                 </div>

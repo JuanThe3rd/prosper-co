@@ -67,6 +67,43 @@
   width: 90%;
 }
 
+.cart-product-image {
+  aspect-ratio: 1/1;
+  height: 10rem;
+  margin-top: 1rem;
+}
+
+.cart-product {
+  border-bottom: 1px solid grey;
+  display: grid;
+  grid-template-columns: 75% 25%;
+  margin-left: 2.5%;
+  width: 95%;
+}
+
+.last-cart-product {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  margin-left: 2.5%;
+  width: 95%;
+}
+
+.cart-remove-btn {
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  font-size: 1.25rem;
+  height: 2rem;
+  position: relative;
+  margin-left: 120%;
+  margin-top: -13.5rem;
+  width: 2rem;
+}
+
+.cart-remove-btn:hover {
+  color: grey;
+}
+
 .empty-cart {
   left: 4rem;
   position:absolute;
@@ -104,8 +141,7 @@
 .close-modal {
   cursor: pointer;
   float: right;
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1.5rem;
   margin-right: 0.5rem;
   margin-top: 0.25rem;
 }
@@ -113,6 +149,10 @@
 .close-modal:hover {
   color: grey;
 }
+
+
+
+
 
 /* <---------- Home Page ----------> */
 .page-background {
@@ -144,7 +184,7 @@
   column-gap: 5%;
   display: grid;
   grid-template-columns: 30% 30% 30%;
-  row-gap: 3rem;
+  row-gap: 5rem;
   margin-left: 2%;
   margin-top: 10rem;
   position: relative;
@@ -211,7 +251,7 @@
   height: 15rem;
   margin-left: -0.5rem;
   position: relative;
-  top: 30rem;
+  top: 12rem;
   width: 101.14%;
 }
 
