@@ -85,6 +85,7 @@
   display: grid;
   grid-template-columns: 75% 25%;
   margin-left: 2.5%;
+  transition: all 200ms;
   width: 90%;
 }
 
@@ -92,6 +93,7 @@
   display: grid;
   grid-template-columns: 75% 25%;
   margin-left: 2.5%;
+  transition: all 200ms;
   width: 90%;
 }
 
@@ -188,37 +190,80 @@
   text-align: center;
 }
 
-.products-container {
-  column-gap: 5%;
+.home-page-main-content {
   display: grid;
-  grid-template-columns: 30% 30% 30%;
-  row-gap: 5rem;
-  margin-left: 2%;
+  grid-template-columns: 25% 75%;
   margin-top: 10rem;
+}
+
+.filter-section {
+  background-color: white;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  margin-left: -0.5rem;
+  margin-top: -3rem;
+  height: 60rem;
+  padding: 1rem;
+  width: 90%;
+}
+
+.filter-title {
+  font-family: Optima, sans-serif;
+}
+
+.filter-category {
+  cursor: pointer;
+  clear: both;
+  font-size: 1.3rem;
+  float: left;
+  margin-bottom: 0.5rem;
+  text-decoration: underline;
+}
+
+.filter-category:hover{
+  color: blue;
+}
+
+.products-container {
+  column-gap: 2%;
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+  margin-left: 2%;
+  min-height: 60rem;
   position: relative;
+  row-gap: 2rem;
   width: 96%;
 }
 
 .product-card {
   background-color: white;
   border-radius: 10px;
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
   font-family: Trebuchet MS, sans-serif;
+  height: 24rem;
   padding: 1rem;
   position: relative;
+  transition: all 300ms
+}
+
+.product-card:hover {
+  transform: scale(1.025);
+  transition: all 300ms;
 }
 
 .product-img {
   cursor: pointer;
-  height: 25rem;
+  height: 16rem;
   object-fit: cover;
-  margin-left: 5%;
+  margin-left: 10%;
   margin-top: 1rem;
   position: relative;
-  width: 90%;
+  width: 80%;
 }
 
 .product-title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-left: 1.5rem;
 }
@@ -241,18 +286,19 @@
   border-radius: 5px;
   color: white;
   cursor: pointer;
-  height: 60%;
-  margin-left: 40%;
-  margin-top: 8%;
+  font-size: 0.8rem;
+  height: 45%;
+  margin-left: 50%;
+  margin-top: 12%;
   position: relative;
   transition: all 300ms;
-  width: 50%;
+  width: 40%;
 }
 
 .add-to-cart-btn:hover {
   background-color: white;
   color: black;
-  scale: 1.05;
+  transform: scale(1.1);
   transition: all 300ms;
 }
 
@@ -261,7 +307,7 @@
   height: 15rem;
   margin-left: -0.5rem;
   position: relative;
-  top: 12rem;
+  top: 8rem;
   width: 101.14%;
 }
 
@@ -276,3 +322,4 @@
   text-align: center;
   width: 100%;
 }
+
