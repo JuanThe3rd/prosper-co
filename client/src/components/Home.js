@@ -34,7 +34,7 @@ function Home() {
                             <img className='product-img' src={product.picture} alt={`${product.name} img`} />
                             <p className='product-title'>{product.name}</p>
                             <div className='product-details'>
-                                <p className='product-price'>Price: ${product.price}</p>
+                                <h1 className='product-price'>${product.price}</h1>
                                 <button className='add-to-cart-btn' onClick={() => addProductToCart(product)}>Add to Cart</button>
                                 {product.description &&
                                     <p>{product.description}</p>

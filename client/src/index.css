@@ -45,12 +45,12 @@
 .modal-container {
   background-color: white;
   border-radius: 10px;
-  height: 20rem;
+  height: 23.5rem;
   margin-top: -2rem;
-  margin-left: 69rem;
+  margin-left: 65rem;
   position: absolute;
   transition: all 250ms;
-  width: 20%;
+  width: 25%;
   z-index: 2;
 }
 
@@ -63,14 +63,21 @@
   border-radius: 5px;
   height: 60%;
   margin-left: 5%;
-  overflow: auto;
-  width: 90%;
+  overflow-x: hidden;
+  padding: 1rem;
+  max-width: 18rem;
 }
 
 .cart-product-image {
-  aspect-ratio: 1/1;
   height: 10rem;
   margin-top: 1rem;
+  object-fit: cover;
+  width: 10rem;
+}
+
+.cart-product-price {
+  margin-right: -30%;
+  text-align: right;
 }
 
 .cart-product {
@@ -78,14 +85,14 @@
   display: grid;
   grid-template-columns: 75% 25%;
   margin-left: 2.5%;
-  width: 95%;
+  width: 90%;
 }
 
 .last-cart-product {
   display: grid;
   grid-template-columns: 75% 25%;
   margin-left: 2.5%;
-  width: 95%;
+  width: 90%;
 }
 
 .cart-remove-btn {
@@ -95,7 +102,7 @@
   font-size: 1.25rem;
   height: 2rem;
   position: relative;
-  margin-left: 120%;
+  margin-left: 140%;
   margin-top: -13.5rem;
   width: 2rem;
 }
@@ -105,9 +112,9 @@
 }
 
 .empty-cart {
-  left: 4rem;
+  left: 6rem;
   position:absolute;
-  top: 8.5rem;
+  top: 10.5rem;
 }
 
 .modal-checkout-details {
@@ -135,6 +142,7 @@
 .modal-checkout-btn:hover {
   background-color: white;
   color: black;
+  scale: 1.05;
   transition: all 200ms;
 }
 
@@ -223,6 +231,7 @@
 }
 
 .product-price {
+  color: orangered; 
   margin-left: 1.5rem;
 }
 
@@ -234,7 +243,7 @@
   cursor: pointer;
   height: 60%;
   margin-left: 40%;
-  margin-top: 5%;
+  margin-top: 8%;
   position: relative;
   transition: all 300ms;
   width: 50%;
@@ -243,6 +252,7 @@
 .add-to-cart-btn:hover {
   background-color: white;
   color: black;
+  scale: 1.05;
   transition: all 300ms;
 }
 

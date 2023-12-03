@@ -25,8 +25,10 @@ function Navbar({ cart, removeProductFromCart }) {
                                             <div className='last-cart-product'>
                                                 <img className='cart-product-image' src={product.picture} />
                                                 <br />
-                                                <p>{product.name}</p>
-                                                <p>x{product.quantity} ${product.price}</p>
+                                                <p>{product.name}&nbsp;&nbsp;&nbsp;x{product.quantity}</p>
+                                                <div className='cart-product-price'>
+                                                    <p>${product.price * product.quantity}</p>
+                                                </div>
                                                 <span className='cart-remove-btn' onClick={() => removeProductFromCart(product)}>&times;</span>
                                             </div>
                                         }
@@ -34,8 +36,10 @@ function Navbar({ cart, removeProductFromCart }) {
                                             <div className='cart-product'>
                                                 <img className='cart-product-image' src={product.picture} />
                                                 <br />
-                                                <p>{product.name}</p>
-                                                <p>x{product.quantity} ${product.price}</p>
+                                                <p>{product.name}&nbsp;&nbsp;&nbsp;x{product.quantity}</p>
+                                                <div className='cart-product-price'>
+                                                    <p>${product.price}</p>
+                                                </div>
                                                 <span className='cart-remove-btn' onClick={() => removeProductFromCart(product)}>&times;</span>
                                             </div>
                                         }
