@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-function Navbar({ cart, removeProductFromCart }) {
+function Navbar({ cart, removeProductFromCart, goHome }) {
     const [cartClass, setCartClass] = useState('modal-container hide');
     const history = useHistory();
     
     return (
         <div>
             <div className='navbar-container'>
-                <img className='nav-home-logo' onClick={goHome} src={require('../site-images/prosper-logo.png')} title='Home' alt='home-logo' />
+                <img className='nav-home-logo' onClick={goHome} name='home' src={require('../site-images/prosper-logo.png')} title='Home' alt='home-logo' />
                 <a className='nav-link' href="">About Us</a>
                 <a className='nav-link' onClick={handleCartClick}>Cart</a>
                 <a className='nav-link' href="">Sign-In</a>
@@ -69,12 +69,6 @@ function Navbar({ cart, removeProductFromCart }) {
         } else{
             setCartClass('modal-container hide');
         }
-    }
-
-    function goHome(e){
-        history.push({
-            pathname: '/'
-        })
     }
 }
 

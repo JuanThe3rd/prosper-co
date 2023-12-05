@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Navbar from './Navbar';
+import Product from './Product';
 
 function Home() {
     const history = useHistory();
@@ -9,6 +10,9 @@ function Home() {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [productsInfo, setProductsInfo] = useState({'categories': [], 'sizes': []});
     const [cart, setCart] = useState({products: [], total: 0});
+    const [page, setPage] = useState('home');
+    const [currentProduct, setCurrentProduct] = useState(null);
+    const all_sizes = ['XS','S','M','L','XL']
 
     // Try to make it so that the products in the cart fade in rather than just pop up
     const [cartProductsClasses, setCartProductsClasses] = useState('cart-product-container hide');
@@ -19,7 +23,6 @@ function Home() {
             .then(products => {
                 const temp_products = [...products];
                 const temp_categories = ['All'];
-                const temp_sizes = ['XS', 'S', 'M', 'L', 'XL'];
 
                 for (let i = 0; i < temp_products.length; i++){
                     temp_products[i]['quantity'] = 0;
@@ -29,7 +32,7 @@ function Home() {
                     }
                 }
 
-                setProductsInfo({'categories': temp_categories, 'sizes': temp_sizes});
+                setProductsInfo({'categories': temp_categories, 'sizes': all_sizes});
                 setProducts(temp_products);
                 setFilteredProducts(temp_products);
             })
@@ -38,56 +41,82 @@ function Home() {
     return (
         <div>
             <div className='page-background'></div>
-            <Navbar cart={cart} removeProductFromCart={removeProductFromCart}/>
-            <div className='home-page'>
-                <h1 className='home-title'>Prosper Co.</h1>
+            <Navbar cart={cart} removeProductFromCart={removeProductFromCart} goHome={goHome}/>
+            
+            {page ==='home' &&
+                <div className='home-page'>
+                    <h1 className='home-title'>Prosper Co.</h1>
 
-                <div className='home-page-main-content'>
-                    <div className='filter-section'>
-                        <h2 className='filter-category-title'>Clothing Type</h2>
-                        <ul>
-                            {productsInfo.categories.map(category => (
-                                <li className='filter-category' onClick={() => filterProducts(category)}>{category}</li>
-                            ))}
-                        </ul>
+                    <div className='home-page-main-content'>
+                        <div className='filter-section'>
+                            <h2 className='filter-category-title'>Clothing Type</h2>
+                            <ul>
+                                {productsInfo.categories.map(category => (
+                                    <li className='filter-category' onClick={() => filterProducts(category)}>{category}</li>
+                                ))}
+                            </ul>
 
-                        <h2 className='filter-sizes-title'>Sizes</h2>
-                        <ul>
-                            {productsInfo.sizes.map(size => (
-                                <li className='filter-category' onClick={() => filterProducts(size)}>{size.toUpperCase()}</li>
+                            <h2 className='filter-sizes-title'>Sizes</h2>
+                            <ul>
+                                {productsInfo.sizes.map(size => (
+                                    <li className='filter-category' onClick={() => filterProducts(size)}>{size.toUpperCase()}</li>
+                                ))}
+                            </ul>
+                        </div>
+                        
+                        <div className='products-container'>
+                            {filteredProducts.map((product) => (
+                                <div className='product-card' onClick={() => handleProductClick(product)}>
+                                    <img className='product-img' src={product.picture} alt={`${product.name} img`} />
+                                    <p className='product-title'>{product.name}</p>
+                                    <div className='sizes-container'>
+                                        {all_sizes.map(size => (
+                                            <div>
+                                                {product.sizes.split(',').includes(size) &&
+                                                    <button className='size-btn'>{size}</button>
+                                                }
+                                                {!product.sizes.split(',').includes(size) &&
+                                                    <div>
+                                                        <button className='size-btn'>{size}</button>
+                                                        <div className='strikethrough'></div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className='product-details'>
+                                        <h2 className='product-price'>${product.price}</h2>
+                                        {product.description &&
+                                            <p>{product.description}</p>
+                                        }
+                                    </div>
+                                </div>
                             ))}
-                        </ul>
-                    </div>
-                    
-                    <div className='products-container'>
-                        {filteredProducts.map((product) => (
-                            <div className='product-card'>
-                                <img className='product-img' onClick={() => handleProductClick(product)} src={product.picture} alt={`${product.name} img`} />
-                                <p className='product-title'>{product.name}</p>
-                                <div className='sizes-container'>
-                                    {product.sizes.split(',').map(size => (
-                                        <button className='size-btn'>{size}</button>
-                                    ))}
-                                </div>
-                                <div className='product-details'>
-                                    <h2 className='product-price'>${product.price}</h2>
-                                    <button className='add-to-cart-btn' onClick={() => addProductToCart(product)}>Add</button>
-                                    {product.description &&
-                                        <p>{product.description}</p>
-                                    }
-                                </div>
-                            </div>
-                        ))}
+                        </div>
                     </div>
                 </div>
+            }
+            {page === 'product' &&
+                <div>
+                    <Product product={currentProduct} cart={cart} addToCart={addProductToCart}/>
+                </div>
+            }
 
-                <footer className='home-footer'>
-                    <p>Placeholder</p>
-                    <p className='home-footer-copyright'>Copyright 2023 © Prosper Co.</p>
-                </footer>
-            </div>
+            <footer className='home-footer'>
+                <p>Placeholder</p>
+                <p className='home-footer-copyright'>Copyright 2023 © Prosper Co.</p>
+            </footer>
         </div>
     )
+
+    function goHome(){
+        setPage('home');
+    }
+
+    function handleProductClick(product){
+        setCurrentProduct(product);
+        setPage('product');
+    }
 
     function filterProducts(filter){
         let temp_filtered_products = [];
@@ -111,13 +140,6 @@ function Home() {
         }
 
         setFilteredProducts(temp_filtered_products);
-    }
-
-    function handleProductClick(product){
-        history.push({
-            pathname: `/product`,
-            state: [product, cart]
-        })
     }
 
     function addProductToCart(product){

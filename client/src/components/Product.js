@@ -1,19 +1,9 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 
-import Navbar from './Navbar';
-
-function Product(){
-    const location = useLocation();
-    const product = location.state[0];
-    const cart = location.state[1];
-
-    console.log(product.picture);
-
+function Product({ product, addToCart, productComponentClasses }){
     return (
-        <div>
-            <div className='page-background'></div>
-            <Navbar cart={cart}/>
+        <div className={productComponentClasses}>
+            <h1 className='product-page-title'>Prosper Co.</h1>
 
             <div className='product-page-main-content'>
                 <div className='product-images-container'>
@@ -33,14 +23,10 @@ function Product(){
                         ))}
                     </div>
 
-                    <button>Add to Cart</button>
+                    <button className='product-page-add-to-cart-btn' onClick={() => addToCart(product)}>Add to Cart</button>
+                    <p>{product.description}</p>
                 </div>
             </div>
-
-            <footer className='home-footer'>
-                <p>Placeholder</p>
-                <p className='home-footer-copyright'>Copyright 2023 © Prosper Co.</p>
-            </footer>
         </div>
     )
 }
