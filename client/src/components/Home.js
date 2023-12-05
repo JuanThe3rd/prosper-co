@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import Navbar from './Navbar';
 
 function Home() {
+    const history = useHistory();
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [productsInfo, setProductsInfo] = useState({'categories': [], 'sizes': []});
     const [cart, setCart] = useState({products: [], total: 0});
+
+    // Try to make it so that the products in the cart fade in rather than just pop up
+    const [cartProductsClasses, setCartProductsClasses] = useState('cart-product-container hide');
 
     useEffect(() => {
         fetch('/products')
             .then(res => res.json())
             .then(products => {
                 const temp_products = [...products];
-                const temp_categories = [];
-                const temp_sizes = ['xs', 's', 'm', 'l', 'xl'];
+                const temp_categories = ['All'];
+                const temp_sizes = ['XS', 'S', 'M', 'L', 'XL'];
 
                 for (let i = 0; i < temp_products.length; i++){
                     temp_products[i]['quantity'] = 0;
@@ -38,22 +44,31 @@ function Home() {
 
                 <div className='home-page-main-content'>
                     <div className='filter-section'>
-                        <h2 className='filter-title'>Clothing Type</h2>
+                        <h2 className='filter-category-title'>Clothing Type</h2>
                         <ul>
                             {productsInfo.categories.map(category => (
                                 <li className='filter-category' onClick={() => filterProducts(category)}>{category}</li>
                             ))}
                         </ul>
-                        <br />
 
-                        <h2 className='filter-title'>Sizes</h2>
+                        <h2 className='filter-sizes-title'>Sizes</h2>
+                        <ul>
+                            {productsInfo.sizes.map(size => (
+                                <li className='filter-category' onClick={() => filterProducts(size)}>{size.toUpperCase()}</li>
+                            ))}
+                        </ul>
                     </div>
-
+                    
                     <div className='products-container'>
                         {filteredProducts.map((product) => (
                             <div className='product-card'>
-                                <img className='product-img' src={product.picture} alt={`${product.name} img`} />
+                                <img className='product-img' onClick={() => handleProductClick(product)} src={product.picture} alt={`${product.name} img`} />
                                 <p className='product-title'>{product.name}</p>
+                                <div className='sizes-container'>
+                                    {product.sizes.split(',').map(size => (
+                                        <button className='size-btn'>{size}</button>
+                                    ))}
+                                </div>
                                 <div className='product-details'>
                                     <h2 className='product-price'>${product.price}</h2>
                                     <button className='add-to-cart-btn' onClick={() => addProductToCart(product)}>Add</button>
@@ -67,23 +82,42 @@ function Home() {
                 </div>
 
                 <footer className='home-footer'>
-                    <h3>This goes on the bottom.</h3>
+                    <p>Placeholder</p>
                     <p className='home-footer-copyright'>Copyright 2023 © Prosper Co.</p>
                 </footer>
             </div>
         </div>
     )
 
-    function filterProducts(category){
-        const temp_filtered_products = [];
+    function filterProducts(filter){
+        let temp_filtered_products = [];
 
-        for (let i = 0; i < products.length; i++){
-            if (products[i].category === category){
-                temp_filtered_products.push(products[i]);
+        if (['XS','S','M','L','XL'].includes(filter)){
+            for (let i = 0; i < products.length; i++){
+                if (products[i].sizes.split(',').includes(filter)){
+                    temp_filtered_products.push(products[i]);
+                }
+            }
+        } else {
+            if (filter === 'All'){
+                temp_filtered_products = products;
+            } else {
+                for (let i = 0; i < products.length; i++){
+                    if (products[i].category === filter){
+                        temp_filtered_products.push(products[i]);
+                    }
+                }
             }
         }
 
         setFilteredProducts(temp_filtered_products);
+    }
+
+    function handleProductClick(product){
+        history.push({
+            pathname: `/product`,
+            state: [product, cart]
+        })
     }
 
     function addProductToCart(product){

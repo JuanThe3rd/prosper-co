@@ -44,14 +44,22 @@
 
 .modal-container {
   background-color: white;
+  border: 1px solid grey;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   height: 23.5rem;
   margin-top: -2rem;
   margin-left: 65rem;
+  opacity: 1;
   position: absolute;
-  transition: all 250ms;
+  transition: opacity 0.5s;
   width: 25%;
   z-index: 2;
+}
+
+.modal-container.hide {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .modal-title {
@@ -68,6 +76,14 @@
   max-width: 18rem;
 }
 
+.last-cart-product {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  margin-left: 2.5%;
+  transition: all 200ms;
+  width: 90%;
+}
+
 .cart-product-image {
   height: 10rem;
   margin-top: 1rem;
@@ -76,25 +92,9 @@
 }
 
 .cart-product-price {
-  margin-right: -30%;
+  display: block;
+  position: relative;
   text-align: right;
-}
-
-.cart-product {
-  border-bottom: 1px solid grey;
-  display: grid;
-  grid-template-columns: 75% 25%;
-  margin-left: 2.5%;
-  transition: all 200ms;
-  width: 90%;
-}
-
-.last-cart-product {
-  display: grid;
-  grid-template-columns: 75% 25%;
-  margin-left: 2.5%;
-  transition: all 200ms;
-  width: 90%;
 }
 
 .cart-remove-btn {
@@ -104,13 +104,22 @@
   font-size: 1.25rem;
   height: 2rem;
   position: relative;
-  margin-left: 140%;
+  margin-left: 130%;
   margin-top: -13.5rem;
   width: 2rem;
 }
 
 .cart-remove-btn:hover {
   color: grey;
+}
+
+.cart-product {
+  border-bottom: 1px solid grey;
+  display: grid;
+  grid-template-columns: 75% 25%;
+  margin-left: 2.5%;
+  transition: all 200ms;
+  width: 95%;
 }
 
 .empty-cart {
@@ -186,14 +195,14 @@
 .home-title {
   font-family: optima, sans-serif;
   font-size: 6rem;
-  margin-top: 5rem;
+  margin-top: 6rem;
   text-align: center;
 }
 
 .home-page-main-content {
   display: grid;
   grid-template-columns: 25% 75%;
-  margin-top: 10rem;
+  margin-top: 11rem;
 }
 
 .filter-section {
@@ -201,6 +210,7 @@
   border-radius: 10px;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   margin-left: -0.5rem;
   margin-top: -3rem;
   height: 60rem;
@@ -208,21 +218,30 @@
   width: 90%;
 }
 
-.filter-title {
+.filter-category-title {
   font-family: Optima, sans-serif;
+  font-size: 1.25rem;
 }
 
 .filter-category {
   cursor: pointer;
   clear: both;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   float: left;
   margin-bottom: 0.5rem;
+  margin-top: -0.5rem;
   text-decoration: underline;
 }
 
 .filter-category:hover{
   color: blue;
+}
+
+.filter-sizes-title {
+  clear: both;
+  font-family: Optima, sans-serif;
+  font-size: 1.25rem;
+  margin-top: 5rem;
 }
 
 .products-container {
@@ -239,9 +258,12 @@
 .product-card {
   background-color: white;
   border-radius: 10px;
-  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, 
+              rgba(240, 46, 170, 0.3) 10px 10px, 
+              rgba(240, 46, 170, 0.2) 15px 15px,
+              rgba(240, 46, 170, 0.1) 20px 20px;
   font-family: Trebuchet MS, sans-serif;
-  height: 24rem;
+  height: 25rem;
   padding: 1rem;
   position: relative;
   transition: all 300ms
@@ -266,6 +288,38 @@
   font-size: 1.2rem;
   font-weight: bold;
   margin-left: 1.5rem;
+}
+
+.sizes-container {
+  margin-bottom: 0.75rem;
+  margin-top: -0.25rem;
+  padding-left: 0.5rem;
+}
+
+.size-btn {
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  height: 1.5rem;
+  margin-left: 0.5rem;
+  transition: all 300ms;
+  width: 2.25rem;
+}
+
+.size-btn:hover {
+  background-color: grey;
+  color: black;
+  transform: scale(1.1);
+  transition: all 300ms;
+}
+
+.size-btn:focus {
+  background-color: grey;
+  color: black;
+  transform: scale(1.1);
+  transition: all 300ms;
 }
 
 .product-details {
@@ -304,7 +358,8 @@
 
 .home-footer {
   background-color: rgb(0, 0, 0);
-  height: 15rem;
+  color: white;
+  height: 20rem;
   margin-left: -0.5rem;
   position: relative;
   top: 8rem;
@@ -316,7 +371,7 @@
   color: rgb(56, 56, 56);
   font-size: 1rem;
   max-height: 2rem;
-  margin-top: 12rem;
+  margin-top: 17rem;
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
   text-align: center;
