@@ -17,8 +17,6 @@ function Home() {
     // Try to make it so that the products in the cart fade in rather than just pop up
     const [cartProductsClasses, setCartProductsClasses] = useState('cart-product-container hide');
 
-    console.log(cart);
-
     useEffect(() => {
         fetch('/products')
             .then(res => res.json())
