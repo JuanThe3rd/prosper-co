@@ -18,36 +18,33 @@ function Navbar({ cart, removeProductFromCart, goHome }) {
                 <span className='close-modal' onClick={() => setCartClass('modal-container hide')}>&times;</span>
                 <h2 className='modal-title'>Cart</h2>
                 <div className='cart-items-container'>
-                    {cart.products.length !== 0 &&
+                    {cart.products.map((product) => (
                         <div>
-                            {cart.products.map((product) => (
-                                <div>
-                                    {product.id === cart.products[cart.products.length - 1].id &&
-                                        <div className='last-cart-product'>
-                                            <img className='cart-product-image' src={product.picture} />
-                                            <br />
-                                            <p>{product.name}&nbsp;&nbsp;&nbsp;&nbsp;x{product.quantity}</p>
-                                            <div className='cart-product-price'>
-                                                <p>${product.price * product.quantity}</p>
-                                            </div>
-                                            <span className='cart-remove-btn' onClick={() => removeProductFromCart(product)}>&times;</span>
-                                        </div>
-                                    }
-                                    {product.id !== cart.products[cart.products.length - 1].id &&
-                                        <div className='cart-product'>
-                                            <img className='cart-product-image' src={product.picture} />
-                                            <br />
-                                            <p>{product.name}&nbsp;&nbsp;&nbsp;&nbsp;x{product.quantity}</p>
-                                            <div className='cart-product-price'>
-                                                <p>${product.price * product.quantity}</p>
-                                            </div>
-                                            <span className='cart-remove-btn' onClick={() => removeProductFromCart(product)}>&times;</span>
-                                        </div>
-                                    }
+                            {product.id === cart.products[cart.products.length - 1].id &&
+                                <div className='last-cart-product'>
+                                    <img className='cart-product-image' src={product.picture} />
+                                    <br />
+                                    <p>{product.selected_size}</p>
+                                    <p>{product.name}&nbsp;&nbsp;&nbsp;&nbsp;x{product.quantity}</p>
+                                    <div className='cart-product-price'>
+                                        <p>${product.price * product.quantity}</p>
+                                    </div>
+                                    <span className='cart-remove-btn' onClick={() => removeProductFromCart(product)}>&times;</span>
                                 </div>
-                            ))}
+                            }
+                            {product.id !== cart.products[cart.products.length - 1].id &&
+                                <div className='cart-product'>
+                                    <img className='cart-product-image' src={product.picture} />
+                                    <br />
+                                    <p>{product.name}&nbsp;&nbsp;&nbsp;&nbsp;x{product.quantity}</p>
+                                    <div className='cart-product-price'>
+                                        <p>${product.price * product.quantity}</p>
+                                    </div>
+                                    <span className='cart-remove-btn' onClick={() => removeProductFromCart(product)}>&times;</span>
+                                </div>
+                            }
                         </div>
-                    }
+                    ))}
                     {cart.products.length === 0 &&
                         <div>
                             <h3 className='empty-cart'>Your Cart is Empty</h3>

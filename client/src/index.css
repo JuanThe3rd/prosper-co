@@ -53,7 +53,8 @@
   background-color: white;
   border: 1px solid grey;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  box-shadow: rgba(0, 0, 0, 0.3) 8px 10px 5px, 
+              rgba(0, 0, 0, 0.22) 0px 15px 12px;
   height: 23.5rem;
   margin-top: -1rem;
   margin-left: 65rem;
@@ -232,30 +233,39 @@
   width: 90%;
 }
 
-.filter-category-title {
+.filter-search-bar {
+  border: 1px solid grey;
+  border-radius: 10px;
+  height: 1.5rem;
+  margin-left: -0.25rem;
+  margin-top: 0.5rem;
+  padding: 0.25rem;
+  padding-left: 0.5rem;
+  width: 97%;
+}
+
+.filter-title {
+  border-bottom: 1px solid black;
   font-family: Optima, sans-serif;
   font-size: 1.25rem;
+  height: 1.5rem;
+  margin-top: 2rem;
 }
 
 .filter-category {
+  border-bottom: 1px solid black;
   cursor: pointer;
-  clear: both;
-  font-size: 1.1rem;
-  float: left;
-  margin-bottom: 0.5rem;
-  margin-top: -0.5rem;
-  text-decoration: underline;
+  font-size: 1rem;
+  height: 1.5rem;
+  margin-top: -1rem;
+  padding-top: 0.25rem;
+  transition: all 500ms;
 }
 
 .filter-category:hover{
+  background-color: rgb(234, 234, 234);
   color: blue;
-}
-
-.filter-sizes-title {
-  clear: both;
-  font-family: Optima, sans-serif;
-  font-size: 1.25rem;
-  margin-top: 5rem;
+  transition: all 500ms;
 }
 
 .products-container {
@@ -278,7 +288,7 @@
               rgba(240, 46, 170, 0.1) 20px 20px;
   cursor: pointer;
   font-family: Trebuchet MS, sans-serif;
-  height: 25rem;
+  height: auto;
   padding: 1rem;
   position: relative;
   transition: all 300ms
@@ -332,16 +342,18 @@
   width: 2rem;
 }
 
-.product-details {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  margin-top: -1rem;
-  width: 100%;
-}
-
 .product-price {
   color: orangered; 
   margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-price ~p{
+  color: grey;
+  margin-left: 5%;
+  max-height: 5.25rem;
+  overflow: auto;
+  width: 90%;
 }
 
 .home-footer {
@@ -387,27 +399,58 @@
 
 .product-page-main-content {
   display: grid;
-  grid-template-columns: 60% 40%;
-  margin-top: 11rem;
+  grid-template-columns: 55% 45%;
+  margin-top: 9rem;
   position: relative;
   z-index: 1;
 }
 
 .product-images-container {
-  display: flex;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: 30% 70%;
   height: 35.13rem;
+  width: 100%;
+}
+
+.product-side-images-container {
+  margin-left: auto;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  max-height: 35rem;
+  position: relative;
+  width: 25%;
+}
+
+.product-side-img {
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 10px;
+  display: block;
+  height: 5rem;
+  margin-left: -4rem;
+  margin-bottom: 1rem;
+  object-fit: cover;
+  position: relative;
+  transition: all 250ms;
+  width: 120%;
+}
+
+.product-side-img:hover {
+  opacity: 0.75;
+  transition: all 250ms;
 }
 
 .product-displayed-image {
   aspect-ratio: 1/1;
+  background-color: white;
   border: 2px solid grey;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 12px;
   height: 35rem;
-  margin-right: 5%;
+  margin-left: -3rem;
+  margin-top: 0;
   object-fit: cover;
-  width: 60%;
+  width: 99%;
 }
 
 .product-page-details h1{
@@ -436,7 +479,7 @@
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   column-gap: 1.5rem;
-  margin-left: 5.5rem;
+  margin-left: 2rem;
   row-gap: 0.8rem;
   width: 40%;
 }
@@ -455,7 +498,7 @@
   height: 2.5rem;
   margin-left: 10%;
   transition: all 300ms;
-  width: 120%;
+  width: 100%;
 }
 
 .product-page-size-btn-container button:hover {
@@ -476,22 +519,30 @@
   border-radius: 40px;
   color: white;
   font-size: 1rem;
-  height: 5rem;
-  margin-left: 5rem;
+  height: 4rem;
+  margin-left: 2rem;
   margin-top: 4rem;
-  transition: all 300ms;
-  width: 60%;
+  transition: all 200ms;
+  width: 30%;
 }
 
 .product-page-add-to-cart-btn:hover {
   background-color: white;
+  border: 1px solid blue;
   color: black;
   cursor: pointer;
   transform: scale(1.05);
-  transition: all 300ms;
+  transition: all 200ms;
 }
 
-.product-page-add-to-cart-btn p{
-  border: 1px solid black;
-  color: grey;
+.product-page-add-to-cart-btn ~p {
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 8px 8px 10px;
+  height: auto;
+  margin-left: 5%;
+  margin-top: 4rem;
+  padding: 1rem;
+  width: 75%;
 }

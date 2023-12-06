@@ -17,6 +17,8 @@ function Home() {
     // Try to make it so that the products in the cart fade in rather than just pop up
     const [cartProductsClasses, setCartProductsClasses] = useState('cart-product-container hide');
 
+    console.log(cart);
+
     useEffect(() => {
         fetch('/products')
             .then(res => res.json())
@@ -26,6 +28,7 @@ function Home() {
 
                 for (let i = 0; i < temp_products.length; i++){
                     temp_products[i]['quantity'] = 0;
+                    temp_products[i].selected_size = null;
 
                     if (!temp_categories.includes(temp_products[i].category)){
                         temp_categories.push(temp_products[i].category)
@@ -49,19 +52,17 @@ function Home() {
 
                     <div className='home-page-main-content'>
                         <div className='filter-section'>
-                            <h2 className='filter-category-title'>Clothing Type</h2>
-                            <ul>
-                                {productsInfo.categories.map(category => (
-                                    <li className='filter-category' onClick={() => filterProducts(category)}>{category}</li>
-                                ))}
-                            </ul>
+                            <input className='filter-search-bar' placeholder='Search'/>
 
-                            <h2 className='filter-sizes-title'>Sizes</h2>
-                            <ul>
-                                {productsInfo.sizes.map(size => (
-                                    <li className='filter-category' onClick={() => filterProducts(size)}>{size.toUpperCase()}</li>
-                                ))}
-                            </ul>
+                            <h3 className='filter-title'>Clothing Type</h3>
+                            {productsInfo.categories.map(category => (
+                                <p className='filter-category' onClick={() => filterProducts(category)}>{category}</p>
+                            ))}
+
+                            <h3 className='filter-title'>Sizes</h3>
+                            {productsInfo.sizes.map(size => (
+                                <p className='filter-category' onClick={() => filterProducts(size)}>{size.toUpperCase()}</p>
+                            ))}
                         </div>
                         
                         <div className='products-container'>
@@ -84,12 +85,11 @@ function Home() {
                                             </div>
                                         ))}
                                     </div>
-                                    <div className='product-details'>
-                                        <h2 className='product-price'>${product.price}</h2>
-                                        {product.description &&
-                                            <p>{product.description}</p>
-                                        }
-                                    </div>
+
+                                    <h2 className='product-price'>${product.price}</h2>
+                                    {product.description &&
+                                        <p>{product.description}</p>
+                                    }
                                 </div>
                             ))}
                         </div>
@@ -98,7 +98,7 @@ function Home() {
             }
             {page === 'product' &&
                 <div>
-                    <Product product={currentProduct} cart={cart} addToCart={addProductToCart}/>
+                    <Product product={currentProduct} addToCart={addProductToCart}/>
                 </div>
             }
 
@@ -142,7 +142,9 @@ function Home() {
         setFilteredProducts(temp_filtered_products);
     }
 
-    function addProductToCart(product){
+    function addProductToCart(product, size){
+        product.selected_size = size;
+
         if (cart.products.includes(product)){
             for(let i = 0; i < cart.products.length; i++){
                 if (cart.products[i].id === product.id){
