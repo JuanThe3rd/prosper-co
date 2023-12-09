@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-from flask import request, make_response
-from flask_restful import Resource
+from flask import Blueprint, request, make_response
+from flask_restful import Resource, Api
+from flask_cors import CORS
+
 import os
 
 from config import app, db, api
@@ -12,7 +14,7 @@ DATABASE = os.environ.get(
 
 @app.route('/')
 def index():
-    return '<h1>Phase 4 Project Server</h1>'
+    return '<h1>Prosper Co. Server</h1>'
 
 # Views go here!
 class Accounts(Resource):
@@ -179,10 +181,10 @@ class OrderProductAssociations (Resource):
             return make_response({'error': 'Join not found'}, 404)
 
 
-api.add_resource(Accounts, '/accounts', '/accounts/<int:id>')
-api.add_resource(Products, '/products', '/products/<int:id>')
-api.add_resource(Orders, '/orders', '/orders/<int:id>')
-api.add_resource(OrderProductAssociations, '/associations', '/associations/<int:id>')
+api.add_resource(Accounts, '/accounts', '/api/accounts/<int:id>')
+api.add_resource(Products, '/products', '/api/products/<int:id>')
+api.add_resource(Orders, '/orders', '/api/orders/<int:id>')
+api.add_resource(OrderProductAssociations, '/api/associations', '/associations/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

@@ -7,9 +7,11 @@ function Navbar({ cart, removeProductFromCart, goHome }) {
         <div>
             <div className='navbar-container'>
                 <img className='nav-home-logo' onClick={goHome} name='home' src={require('../site-images/prosper-logo.png')} title='Home' alt='home-logo' />
-                <a className='nav-link' href="">About Us</a>
-                <a className='nav-link' onClick={handleCartClick}>Cart</a>
-                <a className='nav-link' href="">Sign-In</a>
+                <div>
+                    <a className='nav-link' href="">About Us</a>
+                    <a className='nav-link' onClick={handleCartClick}>Cart</a>
+                    <a className='nav-link' href="">Sign-In</a>
+                </div>
             </div>
 
             <div className={cartClass}>
@@ -24,10 +26,14 @@ function Navbar({ cart, removeProductFromCart, goHome }) {
                                     <div className='cart-main-content'>
                                         <img className='cart-product-image' src={product.picture} />
                                         <div className='cart-product-details'>
-                                            <p>{product.name}</p>
-                                            <p>{product.selected_size}</p>
-                                            <p>x{product.quantity}</p>
-                                            <p>${product.price * product.quantity}</p>
+                                            <p className='cart-product-name'>{product.name}</p>
+                                            <div className='cart-product-size-quan'>
+                                                <p className='cart-product-size'>{product.selected_size}</p>
+                                                <span>&#x2190;</span>
+                                                <p className='cart-product-quantity'>x{product.quantity}</p>
+                                                <span>&#x2190;</span>
+                                            </div>
+                                            <p className='cart-product-total'>${product.price * product.quantity}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -38,10 +44,12 @@ function Navbar({ cart, removeProductFromCart, goHome }) {
                                     <div className='cart-main-content'>
                                         <img className='cart-product-image' src={product.picture} />
                                         <div className='cart-product-details'>
-                                            <p>{product.name}</p>
-                                            <p>{product.selected_size}</p>
-                                            <p>x{product.quantity}</p>
-                                            <p>${product.price * product.quantity}</p>
+                                            <p className='cart-product-name'>{product.name}</p>
+                                            <div className='cart-product-size-quan'>
+                                                <p className='cart-product-size'>{product.selected_size}</p>
+                                                <p className='cart-product-quantity'>x{product.quantity}</p>
+                                            </div>
+                                            <p className='cart-product-total'>${product.price * product.quantity}</p>
                                         </div>
                                     </div>
                                 </div>
