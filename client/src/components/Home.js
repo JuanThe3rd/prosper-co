@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import Navbar from './Navbar';
 import Product from './Product';
 
 function Home() {
-    const history = useHistory();
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [productsInfo, setProductsInfo] = useState({'categories': [], 'sizes': []});
@@ -13,9 +11,6 @@ function Home() {
     const [page, setPage] = useState('home');
     const [currentProduct, setCurrentProduct] = useState(null);
     const all_sizes = ['XS','S','M','L','XL']
-
-    // Try to make it so that the products in the cart fade in rather than just pop up
-    const [cartProductsClasses, setCartProductsClasses] = useState('cart-product-container hide');
 
     useEffect(() => {
         fetch('/products')
