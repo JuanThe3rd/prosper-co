@@ -36,6 +36,26 @@
   position: relative;
 }
 
+.toggled-navbar-menu {
+  cursor: pointer;
+  opacity: 0;
+  width: 40px;
+}
+
+.bar {
+  border-radius: 10px;
+  display: block;
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+  margin-left: 7.5px;
+}
+
+.toggled-navlinks {
+  opacity: 1;
+}
+
 .nav-link {
   color: black;
   cursor: pointer;
@@ -47,6 +67,26 @@
 
 .nav-link:hover {
   color: blue;
+}
+
+@media(max-width: 780px){
+  .navbar-container {
+    display: grid;
+    grid-template-columns: 50% 0% 50%;
+  }
+
+  .toggled-navbar-menu{
+    aspect-ratio: 1/1;
+    height: 38px;
+    margin-left: 80%;
+    opacity: 1;
+    position: absolute;
+    width: 50px;
+  }
+
+  .toggled-navlinks {
+    opacity: 0;
+  }
 }
 
 .modal-container {
@@ -78,6 +118,7 @@
 
 .modal-title {
   margin-left: 1rem;
+  width: 85%;
 }
 
 .cart-items-container {
@@ -172,7 +213,7 @@
   position:absolute;
   text-align: center;
   top: 43%;
-  width: 90%;
+  width: 85%;
 }
 
 .modal-checkout-details {
@@ -230,17 +271,18 @@
 
 
 /* <---------- Home Page ----------> */
+
 .page-background {
   background-attachment: fixed;
   background-image: url('https://uploads-ssl.webflow.com/5f00ac7516929863f832df2c/5f4bfbcbb2f92145c5b96518_06.%20Wisteria.jpg');
-  background-position: 50%;
+  background-position: 50% 50%;
   background-size: cover;
+  overflow-x: hidden;
   position: fixed;
   top: 0%;
   right: 0%;
   bottom: 0%;
   left: 0%;
-  overflow-y: hidden;
   scroll-behavior:smooth;
   width: 100vw;
   z-index: 0;
@@ -262,6 +304,7 @@
   display: grid;
   grid-template-columns: 25% 75%;
   margin-top: 11rem;
+  width: 100%;
 }
 
 .filter-section {
@@ -318,10 +361,15 @@
 }
 
 .products-container {
-  column-gap: 2%;
+  box-sizing: border-box;
+  column-gap: 2.5%;
   display: grid;
-  grid-template-columns: 32% 32% 32%;
+  grid-template-columns: 31% 31% 31%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: visible;
   margin-left: 2%;
+  padding-bottom: 2rem;
   position: relative;
   row-gap: 2rem;
   width: 96%;
@@ -330,6 +378,7 @@
 .product-card {
   background-color: white;
   border-radius: 10px;
+  box-sizing: border-box;
   box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, 
               rgba(240, 46, 170, 0.3) 10px 10px, 
               rgba(240, 46, 170, 0.2) 15px 15px,
@@ -339,7 +388,8 @@
   height: auto;
   padding: 1rem;
   position: relative;
-  transition: all 300ms
+  transition: all 300ms;
+  width: 100%;
 }
 
 .product-card:hover {
@@ -348,12 +398,30 @@
 }
 
 .product-img {
-  height: 16rem;
+  height: 340px;
   object-fit: cover;
-  margin-left: 10%;
+  margin-left: 50%;
   margin-top: 1rem;
   position: relative;
-  width: 80%;
+  transform: translateX(-50%);
+  width: 300px;
+}
+
+@media (max-width: 400px){
+  .product-img {
+    height: 220px;
+    width: 100%;
+  }
+}
+
+@media (max-width:1400px){
+  .filter-section{
+    display: none;
+  }
+
+  .home-page-main-content {
+    grid-template-columns: 100%;
+  }
 }
 
 .product-title {
@@ -403,7 +471,7 @@
   width: 90%;
 }
 
-@media (max-width: 1000px){
+@media (max-width: 1100px){
   .filter-section {
     display: none
   }
@@ -413,9 +481,10 @@
   }
 
   .products-container {
-    column-gap: 5%;
-    grid-template-columns: 50% 50%;
-    margin-left: 2%;
+    column-gap: 7%;
+    grid-template-columns: 45% 45%;
+    margin-left: 50%;
+    transform: translateX(-50%);
     width: 90%;
   }
 
@@ -425,15 +494,21 @@
   }
 }
 
-@media (max-width: 500px){
+@media (max-width: 780px){
   .home-title {
     font-size: 4rem;
   }
 
   .products-container {
     grid-template-columns: 100%;
-    margin-left: 5%;
+    margin-left: 50%;
     margin-top: -3rem;
+    transform: translateX(-50%);
+  }
+
+  .product-card {
+    margin-left: 10%;
+    width: 80%;
   }
 }
 

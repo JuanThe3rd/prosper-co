@@ -7,7 +7,12 @@ function Navbar({ cart, removeProductFromCart, goHome }) {
         <div>
             <div className='navbar-container'>
                 <img className='nav-home-logo' onClick={goHome} name='home' src={require('../site-images/prosper-logo.png')} title='Home' alt='home-logo' />
-                <div>
+                <div className='toggled-navbar-menu'>
+                    <span className='bar'></span>
+                    <span className='bar'></span>
+                    <span className='bar'></span>
+                </div>
+                <div className='toggled-navlinks'>
                     <a className='nav-link' href="">About Us</a>
                     <a className='nav-link' onClick={handleCartClick}>Cart</a>
                     <a className='nav-link' href="">Sign-In</a>

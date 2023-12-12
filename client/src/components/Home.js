@@ -40,7 +40,7 @@ function Home() {
     }, []);
 
     return (
-        <div>
+        <div className='whole-screen'>
             <div className='page-background'></div>
             <Navbar cart={cart} removeProductFromCart={removeProductFromCart} goHome={goHome}/>
             
