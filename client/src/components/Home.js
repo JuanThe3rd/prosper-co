@@ -10,6 +10,7 @@ function Home() {
     const [cart, setCart] = useState({products: [], total: 0});
     const [page, setPage] = useState('home');
     const [currentProduct, setCurrentProduct] = useState(null);
+    const [search, setSearch] = useState(null);
     const all_sizes = ['XS','S','M','L','XL']
 
     useEffect(() => {
@@ -45,7 +46,7 @@ function Home() {
 
                     <div className='home-page-main-content'>
                         <div className='filter-section'>
-                            <input className='filter-search-bar' placeholder='Search'/>
+                            <input className='filter-search-bar' onChange={handleSearch} placeholder='Search'/>
 
                             <h3 className='filter-title'>Clothing Type</h3>
                             {productsInfo.categories.map(category => (
@@ -63,6 +64,8 @@ function Home() {
                                 <div className='product-card' onClick={() => handleProductClick(product)}>
                                     <img className='product-img' src={product.picture} alt={`${product.name} img`} />
                                     <p className='product-title'>{product.name}</p>
+                                    <p>Available Sizes:</p>
+                                    <h2 className='product-price'>${product.price}</h2>
                                     <div className='sizes-container'>
                                         {all_sizes.map(size => (
                                             <div>
@@ -78,11 +81,6 @@ function Home() {
                                             </div>
                                         ))}
                                     </div>
-
-                                    <h2 className='product-price'>${product.price}</h2>
-                                    {product.description &&
-                                        <p>{product.description}</p>
-                                    }
                                 </div>
                             ))}
                         </div>
@@ -101,6 +99,10 @@ function Home() {
             </footer>
         </div>
     )
+
+    function handleSearch(){
+
+    }
 
     function goHome(){
         setPage('home');
