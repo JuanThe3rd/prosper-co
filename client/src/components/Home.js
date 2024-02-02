@@ -46,7 +46,7 @@ function Home() {
 
                     <div className='home-page-main-content'>
                         <div className='filter-section'>
-                            <input className='filter-search-bar' onChange={handleSearch} placeholder='Search'/>
+                            <input className='filter-search-bar' onChange={(e) => handleSearch(e)} value={search} placeholder='Search'/>
 
                             <h3 className='filter-title'>Clothing Type</h3>
                             {productsInfo.categories.map(category => (
@@ -88,9 +88,7 @@ function Home() {
                 </div>
             }
             {page === 'product' &&
-                <div>
-                    <Product product={currentProduct} addToCart={addProductToCart}/>
-                </div>
+                <Product product={currentProduct} addToCart={addProductToCart}/>
             }
 
             <footer className='home-footer'>
@@ -100,8 +98,17 @@ function Home() {
         </div>
     )
 
-    function handleSearch(){
+    function handleSearch(e){
+        const filtered_products = [];
 
+        for(let i = 0; i < products.length; i++){
+            if (products[i].name.toUpperCase().includes(e.target.value.toUpperCase())){
+                filtered_products.push(products[i]);
+            }
+        }
+
+        setFilteredProducts(filtered_products);
+        setSearch(e.target.value)
     }
 
     function goHome(){

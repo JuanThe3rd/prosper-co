@@ -22,19 +22,17 @@ function Product({ product, addToCart }){
                 <div className='product-page-details'>
                     <h1>{product.name}</h1>
                     <h2>{product.category}</h2>
+                    <h3 className='product-page-price'>${product.price}</h3>
                     {errorMsg &&
                         <p>{errorMsg}</p>
                     }
-                    <div className='product-page-price-sizes'>
-                        <h3 className='product-page-price'>${product.price}</h3>
-
-                        <div className='product-page-sizes-container'>
-                            {product.sizes.split(',').map(size => (
-                                <div className='product-page-size-btn-container'>
-                                    <button onClick={() => setCurrentSize(size)}>{size}</button>
-                                </div>
-                            ))}
-                        </div>
+                    
+                    <div className='product-page-sizes-container'>
+                        {product.sizes.split(',').map(size => (
+                            <div className='product-page-size-btn-container'>
+                                <button onClick={() => setCurrentSize(size)}>{size}</button>
+                            </div>
+                        ))}
                     </div>
 
                     <button className='product-page-add-to-cart-btn' onClick={() => handleAddToCartBtn(product, currentSize)}>Add to Cart</button>

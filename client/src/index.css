@@ -527,13 +527,13 @@
 .product-title {
   font-size: 1.5rem;
   font-weight: bold;
-  margin-left: 0.25rem;
+  margin-left: 0.5rem;
   margin-top: 0.25rem;
 }
 
 .product-title~p {
   color: rgb(58, 58, 58);
-  margin-left: 0.25rem;
+  margin-left: 0.5rem;
   margin-top: -0.75rem;
 }
 
@@ -619,7 +619,7 @@
   height: 20rem;
   margin-left: -0.5rem;
   position: relative;
-  top: 14rem;
+  top: 10rem;
   width: 100vw;
 }
 
@@ -728,9 +728,10 @@
 
 .product-page-price {
   color: orangered;
+  float: right;
   font-size: 2.5rem;
-  margin-bottom: 4rem;
-  margin-left: 6%;
+  margin-right: 7rem;
+  margin-top: -1rem;
 }
 
 .product-page-sizes-container {
@@ -738,6 +739,7 @@
   grid-template-columns: 25% 25% 25% 25%;
   column-gap: 1.5rem;
   margin-left: 2rem;
+  margin-top: 5rem;
   row-gap: 0.8rem;
   width: 40%;
 }
@@ -776,12 +778,13 @@
   border: 2px solid grey;
   border-radius: 40px;
   color: white;
-  font-size: 1rem;
-  height: 4rem;
-  margin-left: 2rem;
-  margin-top: 4rem;
+  float: right;
+  font-size: 0.9rem;
+  height: 3.25rem;
+  margin-right: 5rem;
+  margin-top: -2.85rem;
   transition: all 200ms;
-  width: 30%;
+  width: 25%;
 }
 
 .product-page-add-to-cart-btn:hover {

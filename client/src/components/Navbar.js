@@ -112,6 +112,7 @@ function Navbar({ cart, removeProductFromCart, goHome}) {
         setAccount(temp_account);
         setModalClasses({'cart': 'cart-modal-container hide', 'sign-in': 'sign-modal-container hide'});
         setLoginData({});
+        alert(`Welcome ${temp_account.firstname}!`)
     }
 
     function handleCartClick(e){
